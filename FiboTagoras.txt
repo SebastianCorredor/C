@@ -1,0 +1,46 @@
+#--------------------------------------*Versión final*---------------------------------------------------------
+def fibonazzzzi(n):
+    x=1
+    y=1
+    for i in range(n-3):
+        total=x+y
+        y=x
+        x=total
+    return(total)
+cases=int(input())
+if cases==1:
+   print(cases)
+elif cases==2:
+    print(cases)
+elif cases==3:
+    print(cases+2)
+elif (cases>3):
+    print(fibonazzzzi(cases+cases))
+#Este es relativamente mas efectivo.
+#--------------------------------------*Versión inicial*---------------------------------------------------------
+#def fibonazi(n):
+#    if n < 2:
+#        return n
+#    else:
+#        
+#        return fibonazi(n-1) + fibonazi(n-2)
+#o=int(input())
+#r=0
+#s=0
+#if o==1:
+#    print(o)
+#elif o==2:
+#        print(o)
+#elif o==3:
+#        print(o-1)
+#elif (o>3):
+#        a=o-1
+#        r=fibonazi(o)**2
+#        s=fibonazi(a)**2
+#        print (r+s)
+#no ponga numeros muy grandes o se va a demorar dos dias en darle el resultado xD c:
+#en mi computador aguantó hasta 70 y de ahi en adelante se demora una eternidad en responder :c
+
+#John Sebastian Gomez Corredor 
+#ing de sistemas, 2L
+

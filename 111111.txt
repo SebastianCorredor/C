@@ -1,0 +1,218 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+struct nodoArbol{
+ struct nodoArbol *ptrIzq; 
+ int dato;
+ struct nodoArbol *ptrDer;
+};
+typedef struct nodoArbol NodoArbol;
+typedef NodoArbol *ptrNodoArbol;
+
+void insertaNodo (ptrNodoArbol*ptrArbol, int valor);
+void preorden (ptrNodoArbol ptrArbol);
+void postorden (ptrNodoArbol ptrArbol);
+void inorden (ptrNodoArbol ptrArbol);
+int main() {
+  int i;
+  int elemento;
+  ptrNodoArbol ptrRaiz = NULL;
+
+  srand(time(NULL));
+  printf("numeros colocadados en el arbol son: \n");
+
+  for (i=1;i<=10;i++){
+    elemento =rand()%15;
+    printf("%3d",elemento);
+    insertaNodo(&ptrRaiz,elemento);
+    }
+  printf("\nRecorrio en preorden\n");
+  preorden(ptrRaiz);
+
+  printf("\nRecorrio en inorden\n");
+  inorden(ptrRaiz);
+
+  printf("\nRecorrio en postorden\n");
+  postorden(ptrRaiz);
+
+  return 0;
+}
+
+
+void insertaNodo (ptrNodoArbol*ptrArbol,int valor){
+ if(*ptrArbol==NULL){
+  *ptrArbol = malloc(sizeof(NodoArbol));}
+    if(*ptrArbol!=NULL){
+    (*ptrArbol) ->dato=valor;
+    (*ptrArbol) ->ptrIzq=NULL;
+    (*ptrArbol) ->ptrDer=NULL;
+     }
+    else {
+     printf("no se inserto %d.No hay memoria disponible \n");
+      }
+  if(valor <(*ptrArbol)->dato){
+    insertaNodo (&((*ptrArbol)->ptrIzq),valor);
+    }
+  else if(valor>(*ptrArbol)->dato){
+    insertaNodo (&((*ptrArbol)->ptrDer),valor);
+    }
+  else {
+    printf("dup");
+    }
+};
+
+void inorden (ptrNodoArbol ptrArbol){
+if (ptrArbol !=NULL){
+  inorden (ptrArbol->ptrIzq);
+  printf("%3d",ptrArbol->dato);
+  inorden (ptrArbol->ptrDer);
+   }
+  };
+
+void preorden (ptrNodoArbol ptrArbol){
+if (ptrArbol !=NULL){
+  printf("%3d",ptrArbol->dato);
+  preorden (ptrArbol->ptrIzq);
+  preorden (ptrArbol->ptrDer);
+   }
+  };
+
+void postorden (ptrNodoArbol ptrArbol){
+if (ptrArbol !=NULL){
+  postorden (ptrArbol->ptrIzq);
+  postorden (ptrArbol->ptrDer);
+  printf("%3d",ptrArbol->dato);
+   }
+  };
+------------------------------------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct nodo{
+    int info;
+    struct nodo*left;
+    struct nodo*right;
+}typeNode, *node;
+typedef struct{
+    node root;
+}typeBinaryTree, *binaryTree;
+
+node createNode(char);
+binaryTree createBinaryTree(int);
+void leftNode(node,char);
+void rightNode(node,char);
+void preorder(node);
+void posorder(node);
+void inorder(node);
+
+int main(void){
+    binaryTree arbol = createBinaryTree(10);
+    leftNode (arbol->root,5);
+    rightNode (arbol->root, 15);
+    rightNode (arbol ->root->right, 12);
+ 
+    return 0;
+}
+node createNode (char value){
+    node nuevo = (node) malloc (sizeof(typeNode));
+    nuevo->info = value;
+    nuevo->left = NULL;
+    nuevo->right = NULL;
+    return nuevo;
+}
+binaryTree createBinaryTree(int data){
+    binaryTree tree = (binaryTree) malloc(sizeof(typeBinaryTree));
+    tree->root = createNode(data);
+    return tree;
+}
+void leftNode (node raiz, char value){
+    raiz-> left = createNode(value);
+}
+void rightNode(node raiz, char value){
+    raiz->right = createNode(value);
+}
+
+void preorder(struct nodo *raiz){
+  if (raiz != NULL){
+    printf ("%c ",raiz->info);
+    preorder (raiz->left);
+    preorder (raiz->right);
+  }
+}
+
+void posorder (struct nodo *raiz){
+  if (raiz != NULL){
+    posorder (raiz->left);
+    posorder (raiz->right);
+    printf ("%c ", raiz->info);
+  }
+}
+
+void inorder (struct nodo *raiz){
+  if (raiz !=NULL){
+    inorder (raiz->left);
+    printf ("%c", raiz->info);
+    inorder (raiz->right);
+  }
+}
+---------------------------------------------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+struct nodo {
+struct nodo *padre;
+struct nodo *izquierdo;
+struct nodo *derecho;
+int valor;
+};
+struct nodo*crear_nodo(struct nodo*padre, int valor);
+void agregar_valor(struct nodo*arbol,int valor);
+int main(){
+  struct nodo*arbol;
+  arbol =crear_nodo(NULL,40);
+  agregar_valor(arbol,10);
+  agregar_valor(arbol,50);
+  agregar_valor(arbol,1);
+  agregar_valor(arbol,4);
+  agregar_valor(arbol,2);
+  agregar_valor(arbol,45);
+  agregar_valor(arbol,30);
+  agregar_valor(arbol,0);
+  agregar_valor(arbol,-1);
+  agregar_valor(arbol,-100);
+}
+
+
+struct nodo*crear_nodo(struct nodo*padre, int valor){
+  struct nodo *n=calloc(sizeof(struct nodo),1);
+  n->padre=padre;
+  n->valor=valor;
+  return n;
+}
+
+void agregar_valor(struct nodo*arbol,int valor){
+  struct nodo*temp,*pivote;
+  int derecho=0;
+  if (arbol){
+    temp=arbol;
+    while (temp !=NULL){
+      pivote =temp;
+      if (valor>temp->valor){
+        temp =temp -> derecho;
+        derecho = 1;
+      }
+    else {
+      temp =temp ->izquierdo;
+      derecho=0;
+    }
+    temp =crear_nodo(pivote,valor);
+    if (derecho){
+    printf("%d%d\n",valor,pivote->valor);
+    pivote->derecho =temp;
+    }
+    else {
+      printf("%d%d\n",valor,pivote->valor);
+      pivote->izquierdo =temp;
+    }
+    }
+  }
+}

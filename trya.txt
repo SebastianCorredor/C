@@ -1,0 +1,23 @@
+import math
+a=0
+x=float(input("ingrese x: "))
+y=float(input("ingrese y:"))
+sx=0
+sy=0
+while a==0:
+    c=int(input("ingresar mas puntos = 1, parar = numero diferente de 1 ."))
+    if c==1:
+        x2=float(input("ingrese x2: "))
+        y2=float(input("ingrese y2: "))
+        
+        a=0
+        sx=x
+        sy=y
+        cuenta1=((x2)-(x2))**2
+        cuenta2=((y2)-(y2))**2
+        cuenta3=math.sqrt((cuenta1)+(cuenta2))
+        
+    else:
+        print (x,y,x2,y2,cuenta1,cuenta2,cuenta3)
+
+        a=1

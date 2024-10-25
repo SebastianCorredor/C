@@ -1,0 +1,450 @@
+cases=int(input(""))
+c=0
+count=0                       
+for i in range (0,cases):
+    number=int(input(""))
+    n=number
+    reversenumber=0
+    suma=0
+    c=0
+    while c==0:
+        while number!=0:
+            reversenumber=((reversenumber*10)+(number%10))
+            number//=10
+        if suma==reversenumber:
+            c=1
+        else:
+            suma=reversenumber+n
+            number=suma
+            reversenumber=0
+            n=number
+            count=count+1
+
+    if count>100:
+        print("imposible")
+    else:
+        print(suma)
+----------------------------------------------------------------------------------
+case=int(input(""))
+solv=[]
+suma=0
+Cuenta=0
+Primm=[]
+for n in range(1, case):
+    for d in range(1, n + 1):
+        if n % d == 0:
+            Cuenta += 1
+    if Cuenta == 2:
+        Primm.append(n)
+    Cuenta = 0
+for s in range (len(Primm)-1,-1,-1):
+    for b in range (len(Primm)-1,-1,-1):
+        for m in range (len(Primm)-1,-1,-1):
+            if Primm[s]+Primm[b]+Primm[m] == case:
+                solv.append(Primm[s])
+                solv.append(Primm[b])
+                solv.append(Primm[m])
+                case=0  
+for i in range (len(solv)):
+    for j in range (i + 1, len(solv) ):
+        if solv[i] > solv[j]:
+                 temp= solv[j]
+                 solv[j] = solv[i]
+                 solv [i] = temp  
+print (solv)               
+----------------------------------------------------------------------------------
+cases=int(input("Ingrese un numero "))
+Savior=cases
+Entr1=0
+flag=True
+pSteps=0
+while flag==True:
+
+    for i in range (0,1):
+        Entr1= 10*Entr1+ cases%10
+        cases//=10
+    numeronew=cases+Entr1
+    for i in range (0,1):
+        Entr1= 10*Entr1+ numeronew%10
+        numeronew//=10
+    numeronew=0
+    cases=Entr1
+    Entr1=0
+    pSteps+=1
+    if cases==Savior:
+        flag=False
+print (cases)
+print(pSteps)
+----------------------------------------------------------------------------------
+#include<stdio.h>
+int main(){
+	int num;
+	scanf("%i",&num);
+	if (num%2==0)
+	{
+		printf("es par");
+	}
+	return 0;
+}
+----------------------------------------------------------------------------------
+#include<stdio.h>
+int main(){
+	int num,i,c=1;
+	scanf("%i",&num);
+	for (i=1;i<=num;i++){
+		c=c*i;
+	}
+	printf("El factorial %i",c);
+	return 0;
+}
+
+----------------------------------------------------------------------------------
+#include<stdio.h>
+int main(){
+	int a,b;
+	printf("ingrese a: ");
+	scanf("%i",&a);
+	printf("ingrese b: ");
+	scanf("%i",&b);
+	if (a%b==0)
+	{ 
+		printf("es multiplo");
+	}
+	return 0;
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+
+long factorial (int n);
+int main()
+
+{
+    int n;
+    scanf ("%d", &n);
+printf ("%1d", factorial(n));
+
+}
+
+long factorial (int n)
+
+{
+    if (n!=0)
+    
+    {
+        return factorial (n-1)*n;
+    }
+    
+    else
+    
+    {
+        return 1;
+    }
+
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+#include <math.h>
+
+long factorial (int n);
+
+int main()
+{
+   int a,i,j;
+   float x;
+   float seno;
+   long f;
+   seno=0;
+   scanf("%f",&x);
+   scanf("%d",&a);
+   
+   
+   for(i=0;i<=a;i++)
+   {
+       f=factorial((2*i)+1);
+       seno=seno+(((pow(-1,i)*pow(x,(2*i)+1))/f));
+   }
+    printf("%f",seno);
+ return 0;
+}
+
+long factorial (int n)
+
+{ 
+    int i;
+    long fact;
+    fact=1;
+    for(i=1;i<=n;i++)
+    { 
+       fact=fact*i; 
+    }
+    return fact;
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+#include <math.h>
+struct pareja{
+    float x;
+    float y;
+};
+struct pareja leerPareja();
+ struct pareja leerPareja ()
+{
+    struct pareja punto;
+    scanf("%f",&punto.x);
+    scanf("%f",&punto.y);
+    return punto;
+}
+float calcularlongitud(struct pareja,struct pareja);
+ float calcularlongitud(struct pareja p1, struct pareja p2)
+{
+    float distancia;
+    distancia = sqrt((pow(p2.x-p1.x,2)+pow(p2.y-p1.y,2)));
+    return distancia;
+}
+int main()
+{
+  struct pareja puntoA,puntoB,keeper;
+  puntoA=leerPareja();
+  puntoB=leerPareja();
+  keeper=puntoA;
+  float xa,ya,d;
+  int c,op;
+  c=0;
+  d=d+calcularlongitud(puntoA, puntoB);
+  while (c==0)
+    {
+      printf("1=ingresar mas puntos");
+      printf("2=terminar");
+      scanf("%i",&op);
+        if (op==1)
+        {
+            puntoA=puntoB;
+            puntoB=leerPareja();
+            d=d+calcularlongitud(puntoA, puntoB);
+        }
+        else
+        {
+            d=d+calcularlongitud(keeper, puntoB);
+            printf("%f",d);
+            c=c+1;
+        }
+    }
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+#include <math.h>
+struct pareja{
+    float x;
+    float y;
+};
+struct pareja leerPareja();
+ struct pareja leerPareja ()
+{
+    struct pareja punto;
+    scanf("%f",&punto.x);
+    scanf("%f",&punto.y);
+    return punto;
+}
+float calcularsuma(struct pareja,struct pareja);
+ float calcularsuma(struct pareja p1, struct pareja p2)
+{
+    float distancia, distancia2;
+    distancia = ((p1.x*p2.y)+(p1.y*p2.x));
+    distancia2 = (p1.y*p2.y);
+    return (printf("%f | %f" , distancia, distancia2));
+}
+ float calcularresta(struct pareja p1, struct pareja p2)
+{
+    float distancia, distancia2;
+    distancia = ((p1.x*p2.y)-(p1.y*p2.x));
+    distancia2 = (p1.y*p2.y);
+    return (printf("%f | %f" , distancia, distancia2));
+}
+ float calcularmulti(struct pareja p1, struct pareja p2)
+{
+    float distancia, distancia2;
+    distancia = (p1.x*p2.x);
+    distancia2 = (p1.y*p2.y);
+    return (printf("%f | %f" , distancia, distancia2));
+}
+ float calculardiv(struct pareja p1, struct pareja p2)
+{
+    float distancia, distancia2;
+    distancia = (p1.x*p2.y);
+    distancia2 = (p1.y*p2.x);
+    return (printf("%f | %f" , distancia, distancia2));
+}
+int main(){
+  struct pareja puntoA,puntoB;
+  float d;
+  int op;
+    printf("\n1=suma");
+    printf("\n2=resta");
+    printf("\n3=multiplicación");
+    printf("\n4=división");
+    printf("\nelija ñe:\n");
+    scanf("%i",&op);
+    if (op==1)
+    {
+        puntoA=leerPareja();
+        puntoB=leerPareja();
+        calcularsuma(puntoA, puntoB);
+    }
+    else if (op==2)
+    {
+        puntoA=leerPareja();
+        puntoB=leerPareja();
+        calcularresta(puntoA, puntoB);
+    }
+        else if (op==3)
+    {
+        puntoA=leerPareja();
+        puntoB=leerPareja();
+        calcularmulti(puntoA, puntoB);
+    }
+        else if (op==4)
+    {
+        puntoA=leerPareja();
+        puntoB=leerPareja();
+        calculardiv(puntoA, puntoB);
+    }
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+int main(){
+	float numeros[10];
+	int a=0;
+	printf("Cuantos numeros ingresan?");
+	scanf("%d", &a);
+	for (int i=0 ; i<a ; i++){
+		scanf("%f", &numeros[i]);
+	}
+	float alto=0;
+	for (int i=0; i<a; i++){
+		if (numeros[i]>alto){
+			alto=numeros[i];
+		}
+	}
+	for (int i=0; i<a; i++){
+		numeros[i]=numeros[i]/alto;
+		printf ("%f\t", numeros[i]);
+	}
+	return 0;
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+#include <math.h>
+int main(){
+	float numeros[20],sumatoria=0,media=0,xx=0,xx2=0,xx3=0;
+	int a=0,c=0,c2=0;
+	printf("Cuantos numeros ingresan?");
+	scanf("%d", &a);
+	for (int i=0 ; i<a ; i++){
+		scanf("%f", &numeros[i]);
+		c=c+1;
+
+	}
+	for (int a=0; a<c; a++){
+		sumatoria+=numeros[a];
+		media=sumatoria/c;
+		printf("%f\t", numeros[a]);
+	}
+	for (int a=0; a<c; a++){
+		xx=numeros[a]-media;
+		xx=pow(xx,2);
+		xx2=xx2+xx;
+		c2=c-1;
+		xx3=xx2/c2;
+		xx3=sqrt(xx3);
+	}
+	
+	printf("%f\t", xx3);	
+	return 0;
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+int main(){
+	long int cd=0,cd2=0,cd3=0,cd4=0,cd5=0;
+	short int cc=0,cc2=0,cc3=0,cc4=0,cc5=0;
+	float n[5],n2[5],n3[5],n4[5],n5[5];
+	float percent[5];
+	float s=0,s2=0,s3=0,s4=0,s5=0;
+	for (int i=0; i<6 ; i++){
+		printf("Porcentajes: ");
+		scanf("%f", &percent[i]);
+		percent[i]=percent[i]/100;
+	}
+	printf("Codigo estudiante 1: ");
+	scanf("%ld", &cd);
+	printf("Codigo Carrera 1: ");
+	scanf("%hd", &cc);
+	for (int i=0; i<6 ; i++){
+		printf("Notas1 nea: ");
+		scanf("%f", &n[i]);
+		n[i]=n[i]*percent[i];
+		s+=n[i];
+	}
+	printf("Codigo estudiante 2: ");
+	scanf("%ld", &cd2);
+	printf("Codigo Carrera 2: ");
+	scanf("%hd", &cc2);
+	for (int i=0; i<6 ; i++){
+		printf("Notas2 nea: ");
+		scanf("%f", &n2[i]);
+		n2[i]=n2[i]*percent[i];
+		s2+=n2[i];
+	}
+	printf("Codigo estudiante 3: ");
+	scanf("%ld", &cd3);
+	printf("Codigo Carrera 3: ");
+	scanf("%hd", &cc3);
+	for (int i=0; i<6 ; i++){
+		printf("Notas3 nea: ");
+		scanf("%f", &n3[i]);
+		n3[i]=n3[i]*percent[i];
+		s3+=n3[i];
+	}
+	printf("Codigo estudiante 4: ");
+	scanf("%ld", &cd4);
+	printf("Codigo Carrera 4: ");
+	scanf("%hd", &cc4);
+	for (int i=0; i<6 ; i++){
+		printf("Notas4 nea: ");
+		scanf("%f", &n4[i]);
+		n4[i]=n4[i]*percent[i];
+		s4+=n4[i];
+	}
+	printf("Codigo estudiante 5: ");
+	scanf("%ld", &cd5);
+	printf("Codigo Carrera 5: ");
+	scanf("%hd", &cc5);
+	for (int i=0; i<6 ; i++){
+		printf("Notas5 nea: ");
+		scanf("%f", &n5[i]);
+		n5[i]=n5[i]*percent[i];
+		s5+=n5[i];
+	}
+	printf("\n Estudiante1: ");
+	printf("\n Codigo estudiante 1: %ld", cd);
+	printf("\n Codigo Carrera 1: %hd", cc);
+	printf("\n Promedio: %f", s);
+	printf("\n Estudiante2: ");
+	printf("\n Codigo estudiante 2: %ld", cd2);
+	printf("\n Codigo Carrera 2: %hd", cc2);
+	printf("\n Promedio: %f", s2);
+	printf("\n Estudiante2: ");
+	printf("\n Codigo estudiante 3: %ld", cd3);
+	printf("\n Codigo Carrera 3: %hd", cc3);
+	printf("\n Promedio: %f", s3);
+	printf("\n Estudiante4: ");
+	printf("\n Codigo estudiante 4: %ld", cd4);
+	printf("\n Codigo Carrera 1: %hd", cc4);
+	printf("\n Promedio: %f", s4);
+	printf("\n Estudiante5: ");
+	printf("\n Codigo estudiante 5: %ld", cd5);
+	printf("\n Codigo Carrera 5: %hd", cc5);
+	printf("\n Promedio: %f", s5);
+	return 0;
+}
+----------------------------------------------------------------------------------
+

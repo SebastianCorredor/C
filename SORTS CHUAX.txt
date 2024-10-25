@@ -1,0 +1,175 @@
+#include <stdio.h>
+void bubble_sort(int a[], int n) {
+    int i = 0, j = 0, tmp;
+    for (i = 0; i < n; i++) {   
+        for (j = 0; j < n - i - 1; j++) { 
+            if (a[j] > a[j + 1]) {  
+                tmp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = tmp;
+            }
+        }
+    }
+}
+int main() {
+  int a[100], n, i, d;
+  scanf("%d", &n); 
+  for (i = 0; i < n; i++)
+    scanf("%d", &a[i]);
+  bubble_sort(a, n);
+  for (i = 0; i < n; i++)
+     printf("%d", a[i]);
+  return 0;
+}
+-----------------------------------------------------------------------------------------
+#include <stdio.h>
+//insertion sort
+int main(){
+	int a=0,h,i,p;						
+	scanf("%d", &a);
+	int numeros[a];
+	for (int i=0 ; i<a ; i++){
+		scanf("%i", &numeros[i]);
+	}
+    for (i=0; i<a-1; i++){
+    	for (p=0; p<a-1; p++){//lista inicial
+    		if(numeros[p]>numeros[p+1]){//si lista iniciada en p mayor que la 
+    		//siguiente posicion entonces:
+    			h=numeros[p];//igualamos
+    			numeros[p]=numeros[p+1];//intercambiamos
+    			numeros[p+1]=h;//bucle comparador
+			}
+		}
+	}
+	for (i=0; i<a; i++){
+		printf("%i\t",numeros[i]);
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------
+#include <stdio.h>
+//selection sort
+int main(){
+	int a=0,p,h,i;						//lee, guarda y la posición
+	scanf("%d", &a);
+	int numeros[a];
+	for (int i=0 ; i<a ; i++){
+		scanf("%i", &numeros[i]);
+	}
+    for (i=0; i<a; i++){
+        p=i;
+        h=numeros[i];
+        while ((p>0)&&(h<numeros[p-1])){//si el numero es menor que el de su izquierda, se cambiará 
+										//1 en adelante, se guarda posición
+            numeros[p]=numeros[p-1];	//intercambio, se cambia el numero de la izquierda
+            p--;		
+							//decrementa
+        }
+        numeros[p]=h;
+    }
+    for (i=0; i<a; i++){
+        printf("%i\t",numeros[i]);
+    }
+	return 0;
+}
+-----------------------------------------------------------------------------------------
+#include<stdio.h>
+void mergesort(int a[],int i,int j);
+void merge(int a[],int f,int s,int y,int x);
+int main()
+{
+int a[30],n,i;
+scanf("%d",&n);
+for(i=0;i<n;i++)
+scanf("%d",&a[i]);
+mergesort(a,0,n-1);
+for(i=0;i<n;i++)
+printf("%d ",a[i]);
+return 0;
+}
+void mergesort(int a[],int i,int j)
+{
+int m;
+if(i<j)
+{
+m=(i+j)/2;
+mergesort(a,i,m); 
+mergesort(a,m+1,j); 
+merge(a,i,m,m+1,j); 
+}
+}
+void merge(int a[],int f,int s,int y,int x)
+{
+int t[50];
+int i,j,k;
+i=f; 
+j=y; 
+k=0;
+while(i<=s && j<=x) 
+{
+if(a[i]<a[j])
+t[k++]=a[i++];
+else
+t[k++]=a[j++];
+}
+while(i<=s) 
+t[k++]=a[i++];
+while(j<=x) 
+t[k++]=a[j++];
+
+for(i=f,j=0;i<=x;i++,j++)
+a[i]=t[j];
+}
+-----------------------------------------------------------------------------------------
+#include <stdio.h>
+void quicksort (int [], int, int);
+int main()
+{
+    int lista[60];
+    int size, i;
+ 
+    scanf("%d", &size); 
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", &lista[i]);
+    } 
+    quicksort(lista, 0, size - 1);
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", lista[i]);
+    }
+    printf("\n");
+    return 0;
+}
+void quicksort(int listica[], int low, int high)
+{
+    int p, i, j, temp;
+    if (low < high)
+    {
+        p = low;
+        i = low;
+        j = high;
+        while (i < j) 
+        {
+            while (listica[i] <= listica[p] && i <= high)
+            {
+                i++;
+            }
+            while (listica[j] > listica[p] && j >= low)
+            {
+                j--;
+            }
+            if (i < j)
+            {
+                temp = listica[i];
+                listica[i] = listica[j];
+                listica[j] = temp;
+            }
+        }
+        temp = listica[j];
+        listica[j] = listica[p];
+        listica[p] = temp;
+        quicksort(listica, low, j - 1);
+        quicksort(listica, j + 1, high);
+    }
+}
